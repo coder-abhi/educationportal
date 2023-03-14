@@ -1,13 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../Api/axios';
-import AuthContext from '../context/AuthProvider';
-// import '../CSS/Course.css'
 import { Button, Table, Layout, Card, Space,Input,Select, Modal, Form, DatePicker } from 'antd'
 const { Option } = Select;
-const { Content } = Layout;
-const {TextArea} = Input;  
 
 function Course() {
   const { id } = useParams();
@@ -18,8 +14,6 @@ function Course() {
   const DELETE_ASSIGNMENT_URL = `admin/course/${id}/assignment/`;
   const ASSIGNMENT_ADD_URL = `/admin/course/${id}/addAssignment`
 
-  const { auth } = useContext(AuthContext);
-  const navigate = useNavigate()
   const [form] = Form.useForm();
 
   const [content, setContent] = useState(null);
@@ -36,8 +30,6 @@ function Course() {
       setContent(response.data.contents)
     } catch (e) {
       console.log("In Get Data of Course :" + e)
-      // console.log("URL ===="+`/admin/${auth.id}/courses`)
-      // alert("Something went wrong in Get Data Course")
     }
   }
 
@@ -48,28 +40,11 @@ function Course() {
     };
   })
 
-
-
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const [assignment, setAssignment] = useState(null);
   const [assignmentForm, setAssignmentForm] = useState(false);
-  const refreshContent = async () => {
-    if (auth === null || auth === undefined) {
-      toast("You should login FIrst");
-      navigate('../');
-    }
-    try {
-      const response = await axios.get(`/admin/${auth.id}/courses`
-      );
-      console.log("In Refresh" + JSON.stringify(response));
-      setCourse(response.data)
-    } catch (e) {
-      console.log(e)
-      console.log("URL ====" + `/admin/${auth.id}/courses`)
-      alert("Something went wrong")
-    }
-  }
+
 
   const handleAddContent = async () => {
     if (newTitle.length === 0 || newContent.length === 0) return;
@@ -99,7 +74,6 @@ function Course() {
 
     } catch (e) {
       console.log(e)
-      // alert("Something went wrong")
     }
   }
   const handleDeleteAssignment = async (assignId) => {
@@ -110,7 +84,6 @@ function Course() {
       getAssignment();
     } catch (e) {
       console.log(e)
-      // alert("Something went wrong")
     }
   }
   const getAssignment = async() => {
@@ -121,8 +94,6 @@ function Course() {
         setAssignment(response.data)
   }catch(e){
   console.log("In Get Data of Course :"+e)
-  // console.log("URL ===="+`/admin/${auth.id}/courses`)
-  // alert("Something went wrong in Get Data Course")
   }}
 
   // Ant Design Table data
@@ -227,7 +198,6 @@ function Course() {
   const handleCancel = ()=>{
 
   }
-  //   // TODO: Implement logic to add new content to the course
   return <Space
   block={true}
   direction={'vertical'}
@@ -259,10 +229,8 @@ function Course() {
            }}
             addonBefore={selectBefore} value={newContent} placeholder="Enter Content Link" onChange={(e) => { setNewContent(e.target.value); }} />
     <Button onClick={handleAddContent}>Add Content</Button>
-    {/* <Button onClick={refreshContent}>Refresh Content</Button> */}
     <Button onClick={()=>{setAssignmentForm(true)}} >Add Assignment</Button>
       </Space>
-      {/* <input type="text" value={newContent} onChange={(e) => { setNewContent(e.target.value) }} placeholder="Enter Content Link" /> */}
     <Table
     style={{
       width:1200,
@@ -282,9 +250,7 @@ function Course() {
 
 <Modal
         open={assignmentForm}
-        title="Raise Query"
-        // onOk={handleOk}
-        // onCancel={handleCancel}
+        title="Add Assignment"
         closable={true}
         footer={[
           <Button key="back" onClick={()=>{setAssignmentForm(false)}}>
@@ -292,8 +258,6 @@ function Course() {
           </Button>
         ]}
         >
-        {/* <Space>Ask Your Dought</Space>   
-        <br/>     */}
         <Form title='Assignment'
     name="basic"
     labelCol={{span: 8}}
@@ -350,9 +314,7 @@ function Course() {
       }}
     >
       <Select
-      // style={{
-      //   width: 120,
-      // }}
+  
       options={[
         {
           value: 'python',

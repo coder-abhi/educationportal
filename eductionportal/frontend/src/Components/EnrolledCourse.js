@@ -12,7 +12,7 @@ function EnrolledCourse() {
   const GET_ENROLLED = `users/${auth?.id}/enrolled-courses`;
   const navigate = useNavigate()
 
-  const [courses, setCourses] = useState(null);
+  const [courses, setCourses] = useState();
 
   const getData = async () => {
 
@@ -28,27 +28,20 @@ function EnrolledCourse() {
 
   useEffect(() => {
     if(courses === null || courses === undefined) getData();
+
   });
+  
 
   useEffect(() => {
       if(auth === null || auth === undefined) {
           toast.info("Not Authorized Login First",{autoClose:200});
           navigate('../');
         }
-  }, [])
+  })
 
   return (
+    
     <Space className='enrolled-courses admin-course-list'>
-    {/* Course List */}
-    {/* <CourseBox onClick={()=>{alert('hellll')}} title="Java" description="Good" capacity="30" /> */}
-    {/* <div onClick={() =>  */}
-        {/* // ('dsff')}> */}
-        {/* <CourseBox title="Java" description="Good" capacity="30" /> */}
-    {/* </div> */}
-    {/* {courses? courses.map((ele)=>{ return <div onClick={()=>{console.log(ele.id);}}> <CourseBox className="course_box"} title={ele.title} description={ele.description} capacity={ele.capacity} /> </div>}) : null} */}
-    {/* <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} />
-    <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} />
-    <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} /> */}
     {courses? courses.map( (ele)=>{
         return <div onClick={()=>{ navigate('../course/'+ele.id)}} className="course_box_len"> 
         <CourseBox title={ele.title} description={ele.description} capacity={ele.capacity} /> 

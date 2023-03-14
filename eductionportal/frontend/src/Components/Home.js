@@ -23,7 +23,7 @@ const Home = () => {
                     <button className='btn' onClick={() => { navigate('/login_admin') }}>Are You A Educator</button>
                     <button className='btn' onClick={() => { navigate('/login_user') }}>Are You A Learner</button>
                 </div>
-            </div>
+            </div>                                       
         </div>
     )
 }

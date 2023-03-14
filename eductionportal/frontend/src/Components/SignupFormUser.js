@@ -1,6 +1,5 @@
 import React, { useState , useContext} from 'react';
 import '../CSS/Login.css'
-
 import axios from '../Api/axios';
 import AuthContext from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +10,6 @@ function SignupFormUser() {
   const navigate = useNavigate();
 
   const  { setAuth } = useContext(AuthContext);
-  const [errMsg, setErrMsg] = useState('');
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -20,14 +18,12 @@ function SignupFormUser() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here
 
     try {
       const response = await axios.post(LOGIN_URL,
         { firstName, lastName, email, password}
     );
     console.log("Signup FOrm user - response :"+JSON.stringify(response));
-    //console.log(JSON.stringify(response));
     setAuth(response.data);
     setFirstName('')
     setLastName('')
@@ -35,20 +31,9 @@ function SignupFormUser() {
     setPassword('')
     setAuth(null)
     navigate('../login_user')
-    // console.log(auth);
     } catch(err){
-      if (!err) {
-        setErrMsg('No Server Response');
-      } else if (err === 401) {
-        setErrMsg('Unauthorized');
-        } else {
-        // setErrMsg(err);
         console.log(err);
-      }
     }
-
-
-
   };
 
   return (
@@ -80,5 +65,4 @@ function SignupFormUser() {
     </form>
   );
 }
-
 export default SignupFormUser;

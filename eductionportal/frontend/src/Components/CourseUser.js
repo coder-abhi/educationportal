@@ -4,11 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../Api/axios';
 import AuthContext from '../context/AuthProvider';
-// import '../CSS/Course.css'
-function CourseUser({isEnroll}) {
+function CourseUser() {
     const {id} = useParams();
     const {auth} = useContext(AuthContext);
-    const BASE_URL = '/users/addContent/'+id;
     const BASE_URL_CONTENT = "/admin/course/"+id;
     const ENROLL_COURSE_URL = `users/${auth.id}/enroll/`+id;
     const ASSIGNMENT_URL = `users/courses/${id}/getAssignment`
@@ -31,8 +29,6 @@ const getData = async() => {
       setContent(response.data.contents)
 }catch(e){
 console.log("In Get Data of Course :"+e)
-// console.log("URL ===="+`/admin/${auth.id}/courses`)
-// alert("Something went wrong in Get Data Course")
 }
 }
 const MARK_URL = 'users/'
@@ -72,8 +68,6 @@ const loadCheckedData= async() => {
       console.log("Checked Data : "+checkedData);
   }catch(e){
   console.log("In Get Data of Checked Data :"+e)
-  // console.log("URL ===="+`/admin/${auth.id}/courses`)
-  // alert("Something went wrong in Get Data Course")
   }
 }
 
@@ -89,8 +83,6 @@ const loadCheckedData= async() => {
       setEnrollStatus(true)
 }catch(e){
 console.log("In Get Data of Course :"+e)
-// console.log("URL ===="+`/admin/${auth.id}/courses`)
-// alert("Something went wrong in Get Data Course")
 }
  }
 // Ant Design Table data
@@ -102,8 +94,6 @@ const getAssignment = async() => {
       setAssignment(response.data)
 }catch(e){
 console.log("In Get Data of Course :"+e)
-// console.log("URL ===="+`/admin/${auth.id}/courses`)
-// alert("Something went wrong in Get Data Course")
 }
 }
 const columns2 = [
@@ -127,8 +117,8 @@ const columns2 = [
     dataIndex: '',
     key: 'x',
   
-    render: (_,record) => <Button onClick={()=>{navigate(`../code_editor/`+record.id)}} ></Button>,
-  },                      //c<Checkbox onChange={onChange}>Checkbox</Checkbox>;
+    render: (_,record) => <Button onClick={()=>{navigate(`../code_editor/`+record.id)}} >Solve Now</Button>,
+  },                      
 ];
 const columns = [
   {
@@ -142,7 +132,6 @@ const columns = [
   {
     title: 'Resources',
     dataIndex: 'link',
-
     sorter: (a, b) => a.lastName < b.lastName,
     sortDirections: ['descend'],
     render: (_, record) => <a href={"https://"+record.link} target={'_blank'}> {record.link}</a>
@@ -153,14 +142,13 @@ const columns = [
     key: 'x',
   
     render: (_,record) => <Checkbox  onChange={(e)=> {onChangeCheck(record.id,e.target.checked)}} ></Checkbox>,
-  },                      //c<Checkbox onChange={onChange}>Checkbox</Checkbox>;
+  },                   
 ];
 const onChange = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
 }
 
 
-//   // TODO: Implement logic to add new content to the course
   return (
     <Space
   block={true}

@@ -7,10 +7,12 @@ import AuthContext from '../context/AuthProvider';
 import { toast } from 'react-toastify';
 import { Space } from 'antd';
 
-function AvailableCourses({newEnroll}) {
+function AvailableCourses() {
   const { auth } = useContext(AuthContext);
-  const GET_UNENROLLED = `users/${auth?.id}/not-enrolled-courses`;
   const navigate = useNavigate()
+
+  const GET_UNENROLLED = `users/${auth?.id}/not-enrolled-courses`;
+  
 
   const [courses, setCourses] = useState(null);
 
@@ -39,16 +41,6 @@ function AvailableCourses({newEnroll}) {
 
   return (
     <Space className='enrolled-courses admin-course-list'>
-    {/* Course List */}
-    {/* <CourseBox onClick={()=>{alert('hellll')}} title="Java" description="Good" capacity="30" /> */}
-    {/* <div onClick={() =>  */}
-        {/* // ('dsff')}> */}
-        {/* <CourseBox title="Java" description="Good" capacity="30" /> */}
-    {/* </div> */}
-    {/* {courses? courses.map((ele)=>{ return <div onClick={()=>{console.log(ele.id);}}> <CourseBox className="course_box"} title={ele.title} description={ele.description} capacity={ele.capacity} /> </div>}) : null} */}
-    {/* <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} />
-    <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} />
-    <CourseBox title={"ele.title"} description={"ele.description"} capacity={30} /> */}
     {courses? courses.map( (ele)=>{
         return <div onClick={()=>{navigate('../course/enroll/'+ele.id) }} className="course_box_len"> 
         <CourseBox title={ele.title} description={ele.description} capacity={ele.capacity} /> 

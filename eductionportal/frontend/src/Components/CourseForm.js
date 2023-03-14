@@ -2,24 +2,13 @@ import React, { useState,useContext } from 'react';
 import axios from '../Api/axios';
 import AuthContext from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
-// import '../CSS/Login.css'
+import '../CSS/Login.css'
 import { toast } from 'react-toastify';
-import { Space } from 'antd';
 
 function CourseForm() {
-  const  { auth,setAuth } = useContext(AuthContext);
+  const  { auth } = useContext(AuthContext);
 
   const navigate = useNavigate();
-
-  // if(auth === null || auth === undefined) {
-  //   toast.info("Not Authorized Login First",{autoClose:400});
-  //   navigate('../');
-  // }
-
-
-
-  // const BASE_URL = '/admin/'+auth?.id+"/addCourse";
- 
 
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -49,7 +38,6 @@ function CourseForm() {
       } else if (err === 401) {
         console.log('Unauthorized');
         } else {
-        // setErrMsg(err);
         console.log(err);
       }
     }

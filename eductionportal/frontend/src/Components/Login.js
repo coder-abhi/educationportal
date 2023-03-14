@@ -14,8 +14,11 @@ function Login() {
   const LOGIN_URL = isAdmin ? '/admin/login' : '/users/login';
 
   const navigate = useNavigate();
-  const { auth,setAuth } = useContext(AuthContext);
-  // setAuth({email:"abhi"});
+
+
+  const { setAuth } = useContext(AuthContext);
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,13 +27,12 @@ function Login() {
     
     try {
       const response = await axios.post(LOGIN_URL,
-        { email, password }
+        { email, password } //{emil:emil}
       );
       console.log("response :" + JSON.stringify(response));
       setAuth(response.data);
       setEmail('')
       setPassword('')
-      // toast.success(`Welcome ${auth.firstName}`,{ position: "top-right", autoClose: 2000})
       isAdmin ? navigate('../admin_dashboard') : navigate('../user_dashboard');
 
     } catch (err) {
@@ -42,10 +44,7 @@ function Login() {
         console.log(err);
         toast.error("Invalid Credintial", { position: "top-right", autoClose: 2000, })
       }
-      // else{
-        
-      //   toast.error("Something Went Wrong in LogIn", { position: "top-right", autoClose: 2000, })
-      // }
+
     }
   }
 
@@ -70,7 +69,6 @@ function Login() {
           <input required type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
         </div>
         <div className="login-form-item">
-          {/* <button>Sign Up</button> */}
         <button  type="submit">Log In</button>
         </div>
         <div className="login-form-item">

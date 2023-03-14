@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Sidebar.css';
 function Sidebar({Sider}){
@@ -17,7 +17,6 @@ function Sidebar({Sider}){
           }  className="sidebar">
    <button className='sidebar-btns' onClick={()=>{navigate('courseStudent')}}> Course Students</button>
     <button className='sidebar-btns' onClick={()=>{navigate('courses')}}>Course List</button>
-    <button className='sidebar-btns' onClick={()=>{navigate(`addAssignment`)}}>Add Student</button>
     <button className='sidebar-btns' onClick={() => { navigate("addCourse") }}>Add Course</button>
     <button className='sidebar-btns' onClick={()=>{navigate('students')}}> All Student List</button>
     </Sider>

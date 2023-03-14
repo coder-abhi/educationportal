@@ -8,32 +8,24 @@ function EditStudent() {
   const USERS_URL = "/users/"+id;
   console.log("ID ------- "+id);
   const [student, setStudent] = useState(null);
-  // {firstName:"abhi",lastName:"kam",age:"34",email:"email"}
   const[ firstName, setFirstName] = useState();
   const[ lastName, setLastName] = useState();
   const[ email, setEmail] = useState();
-  const[ password, setPassword] = useState();
 
   const getData = async () => {
 
     try {
       console.log("In TRY of GEWT DATA : "+USERS_URL);
       const response = await axios.get(USERS_URL);
-      // console.log(response.data)
       console.log("Student In Edit : "+JSON.stringify(response.data))
       setStudent(response.data)
-      // setFirstName(student.firstName)
-      // setLastName(student.lastName)
-      // setEmail(student.email)
-      // console.log("Fi Name :"+student?.firstName);
-      
+
     }catch(e){
       console.log("In Error of Edit Student : "+e);
     }
   }
   
   useEffect(() => {
-    // console.log("Student : "+student);
     if(student === null || student === undefined) {getData()};
   });
 
@@ -49,7 +41,6 @@ function EditStudent() {
         firstName, lastName, email
       }
       );
-      // console.log(response.data)
       setStudent(response.data)
       navigate('../students')
       console.log("Student In Edit : "+JSON.stringify(student))

@@ -16,7 +16,6 @@ import {ToastContainer, toast } from 'react-toastify';
 import CourseForm from './Components/CourseForm';
 
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminStudentList from './Components/AdminStudentList';
 import AdminCourseList from './Components/AdminCourseList';
@@ -51,7 +50,7 @@ function App() {
         <Route path='/login_admin' element={<Login />} />
 
         <Route path='/signup_user' element={<SignupForm/>} />
-           {/* <Login /> */}
+           {/* <Login /> */}  
         <Route path='/signup_admin' element={<SignupForm />} />
         {/* <Route path='/course' element={<Course />} /> */}
         <Route path='/user_dashboard/' element={<UserDashboard />} >

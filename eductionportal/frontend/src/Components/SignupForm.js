@@ -29,23 +29,15 @@ function SignupForm() {
         { firstName, lastName, email, password }
       );
       console.log("response :" + JSON.stringify(response));
-      //console.log(JSON.stringify(response));
-      // setAuth(response.data);
       setAuth(null)
       setFirstName('')
       setLastName('')
       setEmail('')
       setPassword('')
       isAdmin ? navigate('../login_admin') : navigate('../login_user');
-
-
-      // console.log(auth);
     } catch (err) {
       console.log("error in Signup : " + err);
     }
-
-
-
   };
 
   return (
@@ -62,27 +54,27 @@ function SignupForm() {
         </div>
         <div className="login-form-item">
 
-        <label>
-          Last Name:
-        </label>
+          <label>
+            Last Name:
+          </label>
           <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </div>
         <div className="login-form-item">
 
-        <label>
-          Email:
-        </label>
+          <label>
+            Email:
+          </label>
           <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="login-form-item">
 
-        <label>
-          Password:
-        </label>
+          <label>
+            Password:
+          </label>
           <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <br />
-        <button  className='login-form-item-sb' type="submit">Sign Up</button>
+        <button className='login-form-item-sb' type="submit">Sign Up</button>
       </form>
     </div>
   );

@@ -1,41 +1,23 @@
 import React, { useState, useContext } from 'react';
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import SidebarUser from './SidebarUser';
 import AuthContext from '../context/AuthProvider';
 import { Card, Input, Space } from 'antd';
-// import '../CSS/AdminDashboard.css'
-import { Layout , Drawer,FloatButton, Button, Modal } from 'antd';
+import { Layout, Drawer, FloatButton, Button, Modal } from 'antd';
 import axios from '../Api/axios';
-const {Sider,Content} = Layout;
-// import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button} from 'reactstrap'
-// import Course from './Course';
+const { Sider, Content } = Layout;
 
 function UserDashboard() {
-  const {TextArea} = Input;  
-    const navigate = useNavigate();
-    const { auth } = useContext(AuthContext);
-    const QUERY_URL = `users/${auth?.id}/addQuery`
-    const GET_QUERY_URL = `admin/getAllQuery`
-    // const {drawerStatus, setDrawerStatus} = useContext(AuthContext);
-    // console.log(auth);
-  // state to hold the list of students
-
-
-  // function to delete a student
-  const handleDeleteStudent = (id) => {
-
-  };
-
-  // function to edit a student
-  const handleEditStudent = (id) => {
-    // implementation for editing a student
-  };
+  const { TextArea } = Input;
+  const { auth } = useContext(AuthContext);
+  const QUERY_URL = `users/${auth?.id}/addQuery`
+  const GET_QUERY_URL = `admin/getAllQuery`
 
   const [drawerStatus, setDrawerStatus] = useState(false);
   const [queryFormStatus, setQueryFormStatus] = useState(false);
+  const [question, setQuestion] = useState('');
 
-
-  const onOpen=()=>{
+  const onOpen = () => {
     setDrawerStatus(true)
     getAllQueries()
   }
@@ -44,88 +26,83 @@ function UserDashboard() {
     setDrawerStatus(false);
   };
 
-  const [question, setQuestion] = useState('');
-  const handleSubmitQuery = async ()=>{
+  const handleSubmitQuery = async () => {
     try {
       const response = await axios.post(QUERY_URL, {
         question
       }
-      
-    );
-    console.log("response UserDashboard.js in Query Handle:"+JSON.stringify(response));
-    getAllQueries();
-    setQuestion('');
-    setQueryFormStatus(false);
-    // console.log(auth);
-    } catch(err){
- 
-      if(err.code === "ERR_NETWORK"){
-        // toast("Server Not Responding Logged In",{position:"top-right",autoClose:2000})
-      }
+
+      );
+      console.log("response UserDashboard.js in Query Handle:" + JSON.stringify(response));
+      getAllQueries();
+      setQuestion('');
+      setQueryFormStatus(false);
+    } catch (err) {
+      console.log(err);
     }
   }
 
-  const handleCancel = () =>{
+  const handleCancel = () => {
     setQuestion('');
     setQueryFormStatus(false);
   }
 
   const [queries, setQueries] = useState();
-  const getAllQueries = async() =>{
-    try{
+  const getAllQueries = async () => {
+    try {
       const response = await axios.get(GET_QUERY_URL);
-      console.log("In Get all Queries of UserDashboard.js"+ JSON.stringify(response.data));
+      console.log("In Get all Queries of UserDashboard.js" + JSON.stringify(response.data));
       setQueries(response.data)
     }
-    catch(err){
-      console.log("In Get Error all Queries of UserDashboard.js"+err);
+    catch (err) {
+      console.log("In Get Error all Queries of UserDashboard.js" + err);
     }
   }
-
-
+  
   return (
     <Layout hasSider className='dashboard'>
-          <SidebarUser Sider={Sider}/>
+      <SidebarUser Sider={Sider} />
 
-        <div className='dashboard-content'>
-        <Content  style={
-      {
-      textAlign: 'center',
-      minHeight: 120,
-      lineHeight: '20px',
-      width:1200,
-      marginLeft:120,
-      color: '#fff',
-      
-      backgroundColor: '#fff',}} className="course">
+      <div className='dashboard-content'>
+        <Content style={
+          {
+            textAlign: 'center',
+            minHeight: 120,
+            lineHeight: '20px',
+            width: 1200,
+            marginLeft: 120,
+            color: '#fff',
+
+            backgroundColor: '#fff',
+          }} className="course">
+
+
           <Outlet />
-      </Content>
-          {/* <div className="dashboard-content-btns"> */}
-      {/* <button onClick={() => { navigate("/editStudent") }} >Add Student</button> */}
-      {/* <button onClick={() => { navigate("/courses") }}>Add Course</button> */}
-          {/* </div> */}
-        </div>
-     
-        <Drawer title="Queries Section Student" placement="right" onClose={onClose} open={drawerStatus}>
-        <Button onClick={()=>{setQueryFormStatus(true)}}>Raise Query</Button>
-        {queries?.map((ele)=>{return <Card key={ele.id}>
-        <p>
-            Q : {ele.question}
+
+          
+        </Content>
+      </div>
+
+      <Drawer title="Queries Section Student" placement="right" onClose={onClose} open={drawerStatus}>
+        <Button onClick={() => { setQueryFormStatus(true) }}>Raise Query</Button>
+        {queries?.map((ele) => {
+          return <Card key={ele.id}>
+            <p>
+              Q : {ele.question}
             </p>
             <pre>
-          Ans : {ele.answer}
+              Ans : {ele.answer}
             </pre>
-          </Card>}
-          )
-          }
+          </Card>
+        }
+        )
+        }
 
       </Drawer>
       <FloatButton onClick={onOpen}>Ask Queries</FloatButton>
       <Modal
         open={queryFormStatus}
         title="Raise Query"
-        // onOk={handleOk}
-        // onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
             Cancel
@@ -134,11 +111,10 @@ function UserDashboard() {
             Submit
           </Button>,
         ]}
-        >
-        <Space>Ask Your Dought</Space>   
-        <br/>    
-        <TextArea value={question} onChange={(e)=>{setQuestion(e.target.value)}} placeholder={'Ask Question'} />
- 
+      >
+        <Space>Ask Your Dought</Space>
+        <br />
+        <TextArea value={question} onChange={(e) => { setQuestion(e.target.value) }} placeholder={'Ask Question'} />
       </Modal>
     </Layout>
   );
