@@ -58,7 +58,7 @@ function Login() {
           <label>
             Username or Email
           </label>
-          <input required type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+          <input required maxLength={20} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
         </div>
         <div className="login-form-item">
 
@@ -66,7 +66,7 @@ function Login() {
             Password
           </label>
 
-          <input required type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
+          <input maxLength={20} required type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
         </div>
         <div className="login-form-item">
         <button  type="submit">Log In</button>

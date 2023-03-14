@@ -64,6 +64,7 @@ function EditStudent() {
           onChange={(e)=>{setFirstName(e.target.value)}}
           placeholder={student?.firstName}
           required
+          maxLength={30}
           />
           </div>
 
@@ -78,6 +79,7 @@ function EditStudent() {
           onChange={(e)=>{setLastName(e.target.value)}}
           placeholder={student?.lastName}
           required
+          maxLength={25}
           />
           </div>
           <div className="login-form-item">
@@ -91,6 +93,7 @@ function EditStudent() {
           onChange={(e)=>{setEmail(e.target.value)}}
           placeholder={student?.email}
           required
+          maxLength={25}
           />
           </div>
       <button className='login-form-item login-form-submit-edit' type="submit">Apply Changes</button>

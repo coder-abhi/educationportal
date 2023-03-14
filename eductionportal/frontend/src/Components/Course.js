@@ -8,7 +8,7 @@ const { Option } = Select;
 function Course() {
   const { id } = useParams();
   const BASE_URL = '/admin/addContent/' + id;
-  const DELETE_CONTENT_URL = '/admin/content/';
+  const DELETE_CONTENT_URL = `admin/course/${id}/content/`;
   const BASE_URL_CONTENT = "/admin/course/" + id;
   const ASSIGNMENT_URL = `users/courses/${id}/getAssignment`;
   const DELETE_ASSIGNMENT_URL = `admin/course/${id}/assignment/`;
@@ -224,7 +224,7 @@ function Course() {
       }}
        value={newTitle} onChange={(e) => { setNewTitle(e.target.value) }} placeholder="Enter Content Title" />
   
-           <Input style={{
+           <Input maxLength={20} style={{
             width:500
            }}
             addonBefore={selectBefore} value={newContent} placeholder="Enter Content Link" onChange={(e) => { setNewContent(e.target.value); }} />
@@ -283,7 +283,7 @@ function Course() {
         },
       ]}
     >
-      <Input />
+      <Input maxLength={80}/>
     </Form.Item>
 
     <Form.Item

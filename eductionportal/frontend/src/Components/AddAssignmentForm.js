@@ -72,7 +72,7 @@ function AddAssignmentForm() {
           },
         ]}
       >
-        <Input />
+        <Input maxLength={80}/>
       </Form.Item>
 
       <Form.Item

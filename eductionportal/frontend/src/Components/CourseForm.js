@@ -51,7 +51,7 @@ function CourseForm() {
       <label>
         Title:
       </label>
-        <input required type="text" name="title" value={title} onChange={(e)=>{setTitle(e.target.value)}} />
+        <input maxLength={40} required type="text" name="title" value={title} onChange={(e)=>{setTitle(e.target.value)}} />
       </div>
      
       <div className="login-form-item">
@@ -59,7 +59,7 @@ function CourseForm() {
       <label>
         Start Date:
       </label>
-        <input required type="date" name="startDate" value={startDate} onChange={(e)=>{setStartDate(e.target.value)}} />
+        <input maxLength={25} required type="date" name="startDate" value={startDate} onChange={(e)=>{setStartDate(e.target.value)}} />
       </div>
  
       <div className="login-form-item">
@@ -67,7 +67,7 @@ function CourseForm() {
       <label>
         End Date:
       </label>
-        <input required type="date" name="endDate" value={endDate} onChange={(e)=>{setEndDate(e.target.value)}} />
+        <input maxLength={25} required type="date" name="endDate" value={endDate} onChange={(e)=>{setEndDate(e.target.value)}} />
       </div>
       
       <div className="login-form-item">
@@ -75,7 +75,7 @@ function CourseForm() {
       <label>
         Capacity:
       </label>
-        <input required type="number" name="capacity" value={capacity} onChange={(e)=>{setCapacity(e.target.value)}} />
+        <input maxLength={4} required type="number" name="capacity" value={capacity} onChange={(e)=>{setCapacity(e.target.value)}} />
       </div>
       
       <button  className='login-form-item add-course-submit' type="submit">Submit</button>

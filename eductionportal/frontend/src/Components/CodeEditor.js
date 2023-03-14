@@ -85,7 +85,7 @@ function CodeEditor() {
       children: <Card style={{ color: 'red', backgroundColor: 'black', height: '100%', width: '94%' }}>
         <p style={{ color: 'lightgreen' }}>Input : </p>
         <span>
-          <Input value={input} onChange={(e) => { setInput(e.target.value) }} />
+          <Input maxLength={100} value={input} onChange={(e) => { setInput(e.target.value) }} />
         </span>
       </Card>,
     },

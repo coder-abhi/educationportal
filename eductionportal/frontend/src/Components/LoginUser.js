@@ -54,13 +54,13 @@ function LoginUser() {
             Username or Email
           </label>
           <br />
-          <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+          <input maxLength={20} type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
           <br />
           <label htmlFor="password" className="label_form">
             Password
           </label>
           <br />
-          <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
+          <input maxLength={20} type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
           <br />
           <input type="submit" value="LogIn" />
           

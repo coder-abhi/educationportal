@@ -50,28 +50,28 @@ function SignupForm() {
           <label>
             First Name:
           </label>
-          <input required type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          <input maxLength={20} required type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         </div>
         <div className="login-form-item">
 
           <label>
             Last Name:
           </label>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <input maxLength={20} type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </div>
         <div className="login-form-item">
 
           <label>
             Email:
           </label>
-          <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input maxLength={20} required type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="login-form-item">
 
           <label>
             Password:
           </label>
-          <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input maxLength={20} required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <br />
         <button className='login-form-item-sb' type="submit">Sign Up</button>

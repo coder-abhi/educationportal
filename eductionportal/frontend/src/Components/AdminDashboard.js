@@ -40,9 +40,9 @@ function AdminDashboard() {
     }
   }
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   const [answer, setAnswer] = useState('');
 
